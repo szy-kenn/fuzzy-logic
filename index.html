@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fuzzy Logic</title>
+    <link rel="stylesheet" href="src/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <h1>Fuzzy Logic</h1>
+      <div class="charts-container">
+        <div class="sub-charts-container">
+          <div class="temperature-chart-container sub-chart-container">
+            <div><canvas id="temperatureChart"></canvas></div>
+            <div><canvas id="temperatureBarChart"></canvas></div>
+          </div>
+          <div class="cloud-cover-chart-container sub-chart-container">
+            <div><canvas id="cloudCoverBarChart"></canvas></div>
+            <div><canvas id="cloudCoverChart"></canvas></div>
+          </div>
+        </div>
+        <div class="speed-chart-container">
+          <div style="position: relative; width: 100%;">
+            <canvas id="speedChart"></canvas>
+          </div>
+          <p class="cog-p">Center of Gravity: <span class="cog-text"></span></p>
+          <div class="sliders-container">
+            <div class="slider-container">
+              <p class="slider-title">Temperature Value</p>
+              <div class="slider-content">
+                <input type="range" name="tempValueSlider" id="tempValueSlider" min="0" max="110">
+                <div class="value-text-container">
+                  <p class="value-text temp-value-text">55</p>
+                </div>
+              </div>
+            </div>
+            <div class="slider-container">
+              <p class="slider-title">Cloud Cover Value</p>
+              <div class="slider-content">
+                <input type="range" name="cloudCoverValueSlider" id="cloudCoverValueSlider" min="0" max="100">
+                <div class="value-text-container">
+                  <p class="value-text cloud-cover-value-text">50</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>
