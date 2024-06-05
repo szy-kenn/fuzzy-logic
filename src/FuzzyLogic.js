@@ -1,3 +1,4 @@
+import { color } from "chart.js/helpers";
 import { addTemperatureLineChart, addTemperatureBarChart, addCloudCoverChart, addCloudCoverBarChart, addSpeedChart } from "./charts";
 
 export default class FuzzyLogic {
@@ -50,7 +51,9 @@ export default class FuzzyLogic {
             data: aggregatedValues,
             fill: true,
             backgroundColor: gradient,
-            borderColor: "white",
+            // borderColor: "white",
+            borderColor: "rgba(124, 58, 237,1)",
+            borderWidth: 5,
             pointColor: "#fff",
             pointStrokeColor: "#ff6c23",
             pointHighlightFill: "#fff",
@@ -71,8 +74,21 @@ export default class FuzzyLogic {
             borderColor: "#f87171"
         };
 
+        this.speedChart.options.plugins.annotation.annotations[1] = {
+            type: "label",
+            xValue: cog,
+            yValue: Math.max(fast / 2, slow / 2) + .08,
+            color: "white",
+            content: cog.toString() === "NaN" ? "0" : (+cog.toFixed(2)).toString(),
+            font: {
+                size: 24,
+                weight: "bold",
+                family: "Roboto"
+            },
+        };
+
         this.speedChart.update();
-        document.querySelector(".cog-text").textContent = cog;
+        // document.querySelector(".cog-text").textContent = cog;
     }
 
     initialize() {
@@ -90,7 +106,7 @@ export default class FuzzyLogic {
         const [fuzzyT, fuzzyCC] = this.fuzzify(tempValue, cloudCoverValue);
         this.#updateBarCharts(fuzzyT, fuzzyCC);
 
-        const [slowValue, fastValue] = this.applyRules(fuzzyCC[0], fuzzyT[2], fuzzyCC[1], fuzzyT[1]);
+        const [fastValue, slowValue] = this.applyRules(fuzzyCC[0], fuzzyT[2], fuzzyCC[1], fuzzyT[1]);
         
         const aggregatedValues = this.aggregate(slowValue, fastValue);
         this.#updateSpeedChart(aggregatedValues);

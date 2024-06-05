@@ -104,7 +104,7 @@ export const addTemperatureLineChart = (freezingMf, coolMf, warmMf, hotMf) => {
 export const addTemperatureBarChart = (data) => {
 
   const datasets = {
-    labels: ["Freezing", "Cool", "Warm", "Hot"],
+    labels: ["F", "C", "W", "H"],
     datasets: [{
       data: data,
       borderColor: ["#3b82f6", "#67e8f9", "#fef08a", "#fca5a5"],
@@ -130,7 +130,15 @@ export const addTemperatureBarChart = (data) => {
             max: 1.0,
             ticks: {
               stepSize: .1
-            }
+            },
+            grid: {
+              color: "rgba(0, 0, 0, 0)"
+            },
+          },
+          y: {
+            grid: {
+              color: "rgba(0, 0, 0, 0)"
+            },
           }
         },
         responsive: true,
@@ -162,15 +170,15 @@ export const addCloudCoverChart = (sunnyMf, partlyCloudyMf, overcastMf) => {
         label: 'Partly Cloudly',
         data: Array.from({length: 101}, (_, i) => i < 20 || i > 80 ? null : partlyCloudyMf.calculate(i)),
         fill: false,
-        backgroundColor: '#a16207',
-        borderColor: '#a16207',
+        backgroundColor: '#fdba74',
+        borderColor: '#fdba74',
       },
       {
         label: 'Overcast',
         data: Array.from({length: 101}, (_, i) => i < 60 ? null : overcastMf.calculate(i)),
         fill: false,
-        backgroundColor: '#155e75',
-        borderColor: '#155e75',
+        backgroundColor: '#0e7490',
+        borderColor: '#0e7490',
       },
     ]
   };
@@ -218,7 +226,7 @@ export const addCloudCoverChart = (sunnyMf, partlyCloudyMf, overcastMf) => {
               yMax: 1,
               borderColor: "#4ade80",
               borderWidth: 2,
-              borderDash: [5, 5],
+              borderDash: [10, 10],
               label: {
                 enabled: true,
                 content: "Test"
@@ -234,10 +242,10 @@ export const addCloudCoverChart = (sunnyMf, partlyCloudyMf, overcastMf) => {
 export const addCloudCoverBarChart = (data) => {
 
   const datasets = {
-    labels: ["Sunny", "Partially Cloudy", "Overcast"],
+    labels: ["S", "PC", "O"],
     datasets: [{
       data: data,
-      borderColor: ["#fcd34d", "#a16207", "#155e75"],
+      borderColor: ["#fcd34d", "#fdba74", "#0e7490"],
       borderWidth: 3,
     }]
   };
@@ -260,6 +268,14 @@ export const addCloudCoverBarChart = (data) => {
             max: 1.0,
             ticks: {
               stepSize: .1
+            },
+            grid: {
+              color: "rgba(0, 0, 0, 0)"
+            }
+          },
+          y: {
+            grid: {
+              color: "rgba(0, 0, 0, 0)"
             }
           }
         },
@@ -285,16 +301,16 @@ export const addSpeedChart = (slowMf, fastMf) => {
         label: 'Slow',
         data: Array.from({length: 101}, (_, i) => i > slowMf.p4.x ? null : slowMf.calculate(i)),
         fill: false,
-        backgroundColor: '#86efac',
-        borderColor: '#86efac',
+        backgroundColor: '#bbf7d0',
+        borderColor: '#bbf7d0',
         order: 2,
       },
       {
         label: 'Fast',
         data: Array.from({length: 101}, (_, i) => i < fastMf.p1.x || i > fastMf.p4.x ? null : fastMf.calculate(i)),
         fill: false,
-        backgroundColor: '#b91c1c',
-        borderColor: '#b91c1c',
+        backgroundColor: '#fda4af',
+        borderColor: '#fda4af',
         order: 2,
       },
     ]

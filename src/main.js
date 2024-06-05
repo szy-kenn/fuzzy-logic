@@ -39,4 +39,25 @@ cloudCoverValueSlider.addEventListener("input", (e) => {
   document.querySelector(".cloud-cover-value-text").textContent = e.target.value;
 });
 
+const randomizeBtn = document.querySelector(".btn-randomize");
+
+randomizeBtn.addEventListener("click", () => {
+
+  tempValueSlider.value = parseInt(Math.random(0, 1) * 110);
+  cloudCoverValueSlider.value = parseInt(Math.random(0, 1) * 110);
+  
+  const evt = new Event("input");
+  tempValueSlider.dispatchEvent(evt);
+  cloudCoverValueSlider.dispatchEvent(evt);
+});
+
 fuzzyLogic.initialize();
+
+// setInterval(() => {
+//   tempValueSlider.value = parseInt(Math.random(0, 1) * 110);
+//   cloudCoverValueSlider.value = parseInt(Math.random(0, 1) * 110);
+  
+//   const evt = new Event("input");
+//   tempValueSlider.dispatchEvent(evt);
+//   cloudCoverValueSlider.dispatchEvent(evt);
+// }, 1000);
