@@ -30,12 +30,12 @@ const tempValueSlider = document.getElementById("tempValueSlider");
 const cloudCoverValueSlider = document.getElementById("cloudCoverValueSlider");
 
 tempValueSlider.addEventListener("input", (e) => {
-  fuzzyLogic.getInput(e.target.value, cloudCoverValueSlider.value);
+  fuzzyLogic.processInput(e.target.value, cloudCoverValueSlider.value);
   document.querySelector(".temp-value-text").textContent = e.target.value;
 });
 
 cloudCoverValueSlider.addEventListener("input", (e) => {
-  fuzzyLogic.getInput(tempValueSlider.value, e.target.value);
+  fuzzyLogic.processInput(tempValueSlider.value, e.target.value);
   document.querySelector(".cloud-cover-value-text").textContent = e.target.value;
 });
 

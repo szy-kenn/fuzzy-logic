@@ -1,4 +1,3 @@
-import { color } from "chart.js/helpers";
 import { addTemperatureLineChart, addTemperatureBarChart, addCloudCoverChart, addCloudCoverBarChart, addSpeedChart } from "./charts";
 
 export default class FuzzyLogic {
@@ -51,7 +50,6 @@ export default class FuzzyLogic {
             data: aggregatedValues,
             fill: true,
             backgroundColor: gradient,
-            // borderColor: "white",
             borderColor: "rgba(124, 58, 237,1)",
             borderWidth: 5,
             pointColor: "#fff",
@@ -88,7 +86,6 @@ export default class FuzzyLogic {
         };
 
         this.speedChart.update();
-        // document.querySelector(".cog-text").textContent = cog;
     }
 
     initialize() {
@@ -100,7 +97,7 @@ export default class FuzzyLogic {
         this.cloudCoverBarChart = addCloudCoverBarChart([]);
     }
 
-    getInput(tempValue, cloudCoverValue) {
+    processInput(tempValue, cloudCoverValue) {
         this.#updateLineCharts(tempValue, cloudCoverValue);
 
         const [fuzzyT, fuzzyCC] = this.fuzzify(tempValue, cloudCoverValue);
@@ -133,7 +130,7 @@ export default class FuzzyLogic {
     };
 
     applyRules(sunny, warm, cloudy, cool) {
-        return [sunny < warm ? sunny : warm, cloudy < cool ? cloudy : cool];
+        return [Math.min(sunny, warm), Math.min(cloudy, cool)];
     };
 
     aggregate(slowValue, fastValue) {
@@ -146,7 +143,7 @@ export default class FuzzyLogic {
         let sumY = 0;
         let sumXY = 0;
 
-        for (let i = 0; i < 101; i++) {
+        for (let i = 0; i < aggregatedValues.length; i++) {
             sumY += parseFloat(aggregatedValues[i]);
             sumXY += (i * parseFloat(aggregatedValues[i]));
         }

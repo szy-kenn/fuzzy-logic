@@ -11,28 +11,28 @@ export const addTemperatureLineChart = (freezingMf, coolMf, warmMf, hotMf) => {
       datasets: [
         {
           label: 'Freezing',
-          data: Array.from({length: 111}, (_, i) => i > 50 ? null : freezingMf.calculate(i)),
+          data: Array.from({length: 111}, (_, i) => freezingMf.calculate(i)),
           fill: false,
           backgroundColor: '#3b82f6',
           borderColor: '#3b82f6',
         },
         {
           label: 'Cool',
-          data: Array.from({length: 111}, (_, i) => i < 30 || i > 70 ? null : coolMf.calculate(i)),
+          data: Array.from({length: 111}, (_, i) => coolMf.calculate(i)),
           fill: false,
           backgroundColor: '#67e8f9',
           borderColor: '#67e8f9',
         },
         {
           label: 'Warm',
-          data: Array.from({length: 111}, (_, i) => i < 50 || i > 90 ? null : warmMf.calculate(i)),
+          data: Array.from({length: 111}, (_, i) => warmMf.calculate(i)),
           fill: false,
           backgroundColor: '#fef08a',
           borderColor: '#fef08a',
         },
         {
           label: 'Hot',
-          data: Array.from({length: 111}, (_, i) => i < 70 ? null : hotMf.calculate(i)),
+          data: Array.from({length: 111}, (_, i) => hotMf.calculate(i)),
           fill: false,
           backgroundColor: "#fca5a5",
           borderColor: '#fca5a5',
@@ -161,21 +161,21 @@ export const addCloudCoverChart = (sunnyMf, partlyCloudyMf, overcastMf) => {
     datasets: [
       {
         label: 'Sunny',
-        data: Array.from({length: 101}, (_, i) => i > 40 ? null : sunnyMf.calculate(i)),
+        data: Array.from({length: 101}, (_, i) => sunnyMf.calculate(i)),
         fill: false,
         backgroundColor: '#fcd34d',
         borderColor: '#fcd34d',
       },
       {
         label: 'Partly Cloudly',
-        data: Array.from({length: 101}, (_, i) => i < 20 || i > 80 ? null : partlyCloudyMf.calculate(i)),
+        data: Array.from({length: 101}, (_, i) => partlyCloudyMf.calculate(i)),
         fill: false,
         backgroundColor: '#fdba74',
         borderColor: '#fdba74',
       },
       {
         label: 'Overcast',
-        data: Array.from({length: 101}, (_, i) => i < 60 ? null : overcastMf.calculate(i)),
+        data: Array.from({length: 101}, (_, i) => overcastMf.calculate(i)),
         fill: false,
         backgroundColor: '#0e7490',
         borderColor: '#0e7490',
